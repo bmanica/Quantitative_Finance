@@ -1,0 +1,371 @@
+\documentclass[12pt]{article}
+\usepackage[spanish]{babel}
+\usepackage{natbib}
+\usepackage{url}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage{vmargin}
+\setmarginsrb{2.3 cm}{2.3 cm}{2.3 cm}{2.3cm}{1 cm}{1.5 cm}{1 cm}{1.5 cm}
+
+\title{Tarea 6: Modelado de Derivados}								% Title
+\author{B Juárez, R Hernández, J Ruiz}								% Author
+\date{\today{}}											% Date
+
+\makeatletter
+\let\thetitle\@title
+\let\theauthor\@author
+\let\thedate\@date
+\makeatother
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\theauthor}
+\lhead{\thetitle}
+\cfoot{\thepage}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{titlepage}
+	\centering
+    \vspace*{0.5 cm}
+    \includegraphics[scale = 0.2]{logo.jpg}\\[1.0 cm]	% University Logo
+    \textsc{\LARGE \newline\newline Instituto Tecnológico de Estudios Superiores de Occidente}\\[2.0 cm]	% University Name
+	\textsc{\Large Materia: Finanzas Cuantitativas }\\[0.5 cm]				% Course Code
+	\rule{\linewidth}{0.2 mm} \\[0.4 cm]
+	{\bfseries \thetitle }\\ 
+	\rule{\linewidth}{0.2 mm} \\[1.5 cm]
+	
+	Fecha:\\ \thedate\\
+	\begin{minipage}{0.5\textwidth}
+		\begin{flushleft} \large
+			\emph{Profesor:}\\
+			José Mario Zárate\\
+            Departamento de Matemáticas y Física\\
+			\end{flushleft}
+			\end{minipage}~
+			\begin{minipage}{0.4\textwidth}
+            
+			\begin{flushright} \large
+			\emph{Grupo:} \\
+			Bryan Juárez\\
+            Rubén Hernández\\
+            Juan Pablo Ruiz
+		\end{flushright}
+		
+
+        
+	\end{minipage}\\[2 cm]
+	
+	
+    
+    
+    
+    
+	
+\end{titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\section{Using Taylor Series solve in detail:}
+
+\begin{itemize}
+    \item ${a=0}$
+    \item ${b=0}$
+    \item ${k=2}$
+\end{itemize}
+
+$f(x,y) = e^{xy} + x^{2}y^{2}+5$
+
+\textbf{Starting from Taylor Series for two variables:}
+
+$f(x,y) = f(a,b) + \frac{\partial f(a,b)}{\partial x}(x-a) + \frac{\partial f(a,b)}{\partial y}(y-b) + \frac{1}{2!} \Bigg[\frac{\partial^{2} f(a,b)}{{\partial x}^{2}}(x-a)^{2} + \frac{\partial^{2} f(a,b)}{{\partial y}^{2}}(y-b)^{2} + \frac{\partial^{2} f(a,b)}{\partial x \partial y}(x-a)(y-b) + \frac{\partial^{2} f(a,b)}{\partial y \partial x}(y-b)(x-a)\Bigg]$
+
+\textbf{The first step is to evaluate a and b in the function:}
+
+$f(a,b) = e^{(0)(0)}+(0)^2(0)^2+5
+\\
+f(a,b) = 1+0+5=6$
+
+\textbf{Then, we calculate every partial derivative:}
+
+$\frac{\partial f(x, y)}{\partial x} = ye^{xy}+2xy^2
+\\
+\frac{\partial f(a, b)}{\partial x} = 0e^{(0)(0)}+2(0)(0)^2 = 0
+$
+
+$\frac{\partial f(x, y)}{\partial y} = xe^{xy}+2yx^2
+\\
+\frac{\partial f(a, b)}{\partial y} = 0e^{(0)(0)}+2(0)(0)^2 = 0
+$
+
+$\frac{\partial^{2} f(x, y)}{{\partial x}^{2}} = y^2e^{xy}+2y^2
+\\
+\frac{\partial^{2} f(a, b)}{{\partial x}^{2}} = 0^2e^{(0)(0)}+2(0)^2=0
+$
+
+$\frac{\partial^{2} f(x,y)}{\partial x \partial y} = e^{xy}+xye^{xy}+4xy
+\\
+\frac{\partial^{2} f(a,b)}{\partial x \partial y} = e^{(0)(0)}+(0)(0)e^{(0)(0)}+4(0)(0)=1
+$
+
+$\frac{\partial^{2} f(x,y)}{\partial y \partial x} = e^{xy}+xye^{xy}+4xy
+\\
+\frac{\partial^{2} f(a,b)}{\partial x \partial y} = e^{(0)(0)}+(0)(0)e^{(0)(0)}+4(0)(0)=1
+$
+
+\textbf{And now we can replace in the formula and simplify:}
+
+$
+f(x, y) = 6+0(x-0)+0(y-0)+\frac{1}{2}\Big[0(x-0)^2+0(y-0)^2+1(x-0)(y-0)+1(y-0)(x-0)\Big]
+\\
+f(x,y)=6+\frac{1}{2}\Big[xy+xy\Big]
+\\
+f(x,y)=6+\frac{1}{2}\Big[2xy\Big]
+\\
+f(x,y)=6+xy
+$
+
+
+
+\section{Let's consider certain diffusion process ${dX_t = X_t\sigma dW_t}$\\
+find  differential form of a function\\ ${f(X_{(t+\Delta t),t+\Delta t}) = df_{(t+\Delta t)}:=df_t}$}
+
+\textbf{Using Taylor Series solution for two variables:}
+
+$f(x,y) = f(a,b) + \frac{\partial f(a,b)}{\partial x}(x-a) + \frac{\partial f(a,b)}{\partial y}(y-b) + \frac{1}{2!} \Bigg[\frac{\partial^{2} f(a,b)}{{\partial x}^{2}}(x-a)^{2} + \frac{\partial^{2} f(a,b)}{{\partial y}^{2}}(y-b)^{2} + \frac{\partial^{2} f(a,b)}{\partial x \partial y}(x-a)(y-b) + \frac{\partial^{2} f(a,b)}{\partial y \partial x}(y-b)(x-a)\Bigg]$
+
+Let´s define some variables that will help us:
+
+\begin{itemize}
+    \item $x=X_{(t+\Delta t)}$
+    \item $y=t+\Delta t$
+    \item $a=X_{t}$
+    \item $b=t$
+    \item $k=2$
+\end{itemize}
+
+Rewriting our expression of $f(X_{t}, t)$ in Taylor Series form:
+
+$f(X_{t}, t) = f(X_{t}, t) + \frac{\partial f(X_{t}, t)}{\partial X_{t}}(X_{(t+\Delta t)}-X_{t}) + \frac{\partial f(X_{t}, t)}{\partial t}(t+\Delta t-t) + \frac{1}{2!}\Bigg[\frac{\partial^{2} f(X_{t}, t)}{{\partial X_{t}}^{2}}(X_{t+\Delta t} - X_{t})^{2} + \frac{\partial^{2} f(X_{t}, t)}{{\partial t}^{2}}(t+\Delta t-t)^{2} + \frac{\partial^{2} f(X_{t}, t)}{\partial X_{t} \partial t}(X_{(t+\Delta t)}-X_{t})(t+\Delta t-t) + \frac{\partial^{2} f(X_{t}, t)}{\partial t \partial X_{t}}(t+\Delta t-t)(X_{(t+\Delta t)}-X_{t}) \Bigg]$
+
+When $\Delta t \rightarrow 0$ we can express the subtraction $(X_{t}-X_{t})$ as a differential of $X_{t}$ ($\Delta X_{t}$). A similar case with $(t-t)$ that will become $(\Delta t)$.
+
+$f(X_{t}, t) = f(X_{t}, t) + \frac{\partial f(X_{t}, t)}{\partial X_{t}}(\Delta X_{t}) + \frac{\partial f(X_{t}, t)}{\partial t}(\Delta t) + \frac{1}{2!}\Bigg[\frac{\partial^{2} f(X_{t}, t)}{{\partial X_{t}}^{2}}(\Delta X_{t})^{2} + \frac{\partial^{2} f(X_{t}, t)}{{\partial t}^{2}}(\Delta t)^{2} + \frac{\partial^{2} f(X_{t}, t)}{\partial X_{t} \partial t}(\Delta X_{t})(\Delta t) + \frac{\partial^{2} f(X_{t}, t)}{\partial t \partial X_{t}}(\Delta t)(\Delta X_{t}) \Bigg]$
+
+By making $\Delta X_{t} \rightarrow 0$ and $\Delta t \rightarrow 0$, we have the differential form for our expression.
+
+$df(X_{t}, t) = \frac{\partial f(X_{t}, t)}{\partial X_{t}}(dX_{t}) + \frac{\partial f(X_{t}, t)}{\partial t}(dt) + \frac{1}{2!}\Bigg[\frac{\partial^{2} f(X_{t}, t)}{{\partial X_{t}}^{2}}(dX_{t})^{2} + \frac{\partial^{2} f(X_{t}, t)}{{\partial t}^{2}}(dt)^{2} + \frac{\partial^{2} f(X_{t}, t)}{\partial X_{t} \partial t}(dX_{t})(dt) + \frac{\partial^{2} f(X_{t}, t)}{\partial t \partial X_{t}}(dt)(dX_{t}) \Bigg]$
+
+Let´s focus now on $(dX_{t})^{2}$. By definition we know $dX_{t}=X_{t}\sigma dW_{t}$.
+
+Replacing in our differential form:
+
+$df(X_{t}, t) = \frac{\partial f(X_{t}, t)}{\partial X_{t}}(dX_{t}) + \frac{\partial f(X_{t}, t)}{\partial t}(dt) + \frac{1}{2}\Bigg[\frac{\partial^{2} f(X_{t}, t)}{{\partial X_{t}}^{2}}(X_{t}\sigma dW_{t})^{2} + \frac{\partial^{2} f(X_{t}, t)}{{\partial t}^{2}}(dt)^{2} + \frac{\partial^{2} f(X_{t}, t)}{\partial X_{t} \partial t}(X_{t}\sigma dW_{t})(dt) + \frac{\partial^{2} f(X_{t}, t)}{\partial t \partial X_{t}}(dt)(X_{t}\sigma dW_{t}) \Bigg]$
+
+Applying It$\hat{o}$'s Lemma:
+
+\begin{table}[h]
+\begin{tabular}{|l|l|l|}
+\hline
+      & dt & ${dW_t}$ \\ \hline
+dt    & 0  & 0     \\ \hline
+${dW_t}$ & 0  & dt    \\ \hline
+\end{tabular}
+\end{table}
+
+$$df(X_{t}, t) = \frac{\partial f(X_{t}, t)}{\partial X_{t}}(dX_{t}) + \frac{\partial f(X_{t}, t)}{\partial t}(dt) + \frac{1}{2}\Bigg[\frac{\partial^{2} f(X_{t}, t)}{{\partial X_{t}}^{2}}(X_{t}^{2}\sigma^{2} dt) \Bigg]$$
+
+Grouping by common factor:
+
+$$df(X_{t}, t) = \frac{\partial f(X_{t}, t)}{\partial X_{t}}(dX_{t}) + \Bigg[\frac{\partial f(X_{t}, t)}{\partial t}(dt) + \frac{1}{2}\frac{\partial^{2} f(X_{t}, t)}{{\partial X_{t}}^{2}}(X_{t}^{2}\sigma^{2} dt) \Bigg]$$
+
+This way, we have our final differential expression:
+
+$$df(X_{t}, t) = \frac{\partial f(X_{t}, t)}{\partial X_{t}}(dX_{t}) + \Bigg[\frac{\partial f(X_{t}, t)}{\partial t} + \frac{1}{2}\Bigg(\frac{\partial^{2} f(X_{t}, t)}{{\partial X_{t}}^{2}}X_{t}^{2}\sigma^{2}\Bigg) \Bigg]dt$$
+
+\section{Let's consider a certain diffusion process\\
+${dX_{t} = \mu S_t^{3} + \sigma^{2}dW_t + \frac{1}{2}dt}$ 
+find a differential form of a function:\\
+${f(X_{(t+\Delta t),t+\Delta t}) = df_{(t+\Delta t)}:=df_t}$}
+
+
+\textbf{Using Taylor Series solution for two variables:}
+
+
+
+$f(x,y) = f(a,b) + \frac{\partial f(a,b)}{\partial x}(x-a) + \frac{\partial f(a,b)}{\partial y}(y-b) + \frac{1}{2!} \Bigg[\frac{\partial^{2} f(a,b)}{{\partial x}^{2}}(x-a)^{2} + \frac{\partial^{2} f(a,b)}{{\partial y}^{2}}(y-b)^{2} + \frac{\partial^{2} f(a,b)}{\partial x \partial y}(x-a)(y-b) + \frac{\partial^{2} f(a,b)}{\partial y \partial x}(y-b)(x-a)\Bigg]$
+
+
+Let's define:
+\begin{itemize}
+    \item ${f(X_{(t+\Delta t)}, t+\Delta t) = f(Xt,t)}$
+    \item ${x = X_t}$
+    \item ${y= t}$
+    \item ${a = X_t}$
+    \item ${b = t}$
+    \item ${k = 2}$
+\end{itemize}
+
+\begin{center}
+
+    
+
+${f(X_t,t) = f(X_t,t) + \frac{\partial f(X_t,t)}{\partial X_t}(X_t-X_t) + \frac{\partial f(X_t,t)}{\partial t}(t-t) +}$\\
+${\frac{1}{2!}\Big[\frac{\partial^2 f(X_t,t)}{\partial X_t^2}(X_t-X_t)^{2}+\frac{\partial^2 f(X_t,t)}{\partial t^2}(t-t)^{2}+\frac{\partial^2 f(X_t,t)}{\partial X_t t}( X_t-X_t)(t- t)+\frac{\partial^2 f(X_t,t)}{\partial t X_t}(t-t)(X_t-X_t)\Big]}$
+
+
+\end{center}
+
+\hfill
+
+\begin{center}
+
+    
+
+${f(X_t,t) = f(X_t,t) + \frac{\partial f(X_t,t)}{\partial X_t}(\Delta X_t) + \frac{\partial f(X_t,t)}{\partial t}(\Delta t) +}$\\
+${\frac{1}{2!}\Big[\frac{\partial^2 f(X_t,t)}{\partial X_t^2}(\Delta X_t)^{2}+\frac{\partial^2 f(X_t,t)}{\partial t^2}(\Delta t)^{2}+\frac{\partial^2 f(X_t,t)}{\partial X_t t}(\Delta X_t)(\Delta t)+\frac{\partial^2 f(X_t,t)}{\partial t X_t}(\Delta t)(\Delta X_t)\Big]}$
+
+
+\end{center}
+
+Differential form:
+
+As $\Delta t \rightarrow 0$\\
+and $\Delta X_t \rightarrow 0$
+
+\begin{center}
+
+${df_t =  \frac{\partial f(X_t,t)}{\partial X_t}(dX_t) + \frac{\partial f(X_t,t)}{\partial t}(dt) +}$\\
+${\frac{1}{2}\Big[\frac{\partial^2 f(X_t,t)}{\partial X_t^2}(dX_t)^{2}+\frac{\partial^2 f(X_t,t)}{\partial t^2}(dt)^{2}+\frac{\partial^2 f(X_t,t)}{\partial X_t t}(dX_t)(dt)+\frac{\partial^2 f(X_t,t)}{\partial t X_t}(dt)(dX_t)\Big]}$
+
+\end{center}
+
+\newpage
+
+ Applying It$\hat{o}$'s Lemma:
+\begin{table}[h]
+\begin{tabular}{|l|l|l|}
+\hline
+      & dt & ${dW_t}$ \\ \hline
+dt    & 0  & 0     \\ \hline
+${dW_t}$ & 0  & dt    \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{center}
+
+${df_t =  \frac{\partial f(X_t,t)}{\partial X_t}(dX_t) + \frac{\partial f(X_t,t)}{\partial t}(dt) +}$\\
+${\frac{1}{2}\Big[\frac{\partial^2 f(X_t,t)}{\partial X_t^2}(dX_t)^2+\frac{\partial^2 f(X_t,t)}{\partial X_t t}(dX_t)(dt)+\frac{\partial^2 f(X_t,t)}{\partial t X_t}(dt)(dX_t)\Big]}$
+
+\end{center}
+
+Let's expand the expression in terms of $dX_t$\\
+
+\begin{center}
+
+${df_t =  \frac{\partial f(X_t,t)}{\partial X_t}(\mu S_t^{3} + \sigma^{2}dW_t + \frac{1}{2}dt) + \frac{\partial f(X_t,t)}{\partial t}(dt) +}$\\
+${\frac{1}{2}\Big[\frac{\partial^2 f(X_t,t)}{\partial X_t^2}(\mu S_t^{3} + \sigma^{2}dW_t + \frac{1}{2}dt)^2+\frac{\partial^2 f(X_t,t)}{\partial X_t t}(\mu S_t^{3} + \sigma^{2}dW_t + \frac{1}{2}dt)(dt)+}$
+${\frac{\partial^2 f(X_t,t)}{\partial t X_t}(dt)(\mu S_t^{3} + \sigma^{2}dW_t + \frac{1}{2}dt)\Big]}$
+
+\end{center}
+
+\hfill
+
+Solving the trinomial squared:\\
+
+\begin{center}
+
+$(a+b+c)^2=a^2+b^2+c^2+2ab+2ac+2bc $\\
+
+ $(\mu S_t^{3} + \sigma^{2}dW_t + \frac{1}{2}dt)^2 = \mu^2 S_t^{6} + \sigma^{4}dW_t^2 
+ + \frac{1}{4}dt^2 + 2(\mu S_t^{3})(\sigma^{2}dW_t) + 2(\mu S_t^{3})(\frac{1}{2}dt) + 2(\sigma^{2}dW_t)(\frac{1}{2}dt)
+$  
+\end{center}
+Applying  It$\hat{o}$'s Lemma to the trinomial squared.
+\begin{center}
+ $(\mu S_t^{3} + \sigma^{2}dW_t + \frac{1}{2}dt)^2 = \mu^2 S_t^{6} + \sigma^{4}dt + 2(\mu S_t^{3})(\sigma^{2}dW_t) + 2(\mu S_t^{3})(\frac{1}{2}dt) 
+$  
+\end{center}
+
+We expand the series in terms of the trinomial squared.
+\begin{center}
+${df_t =  \frac{\partial f(X_t,t)}{\partial X_t}(\mu S_t^{3} + \sigma^{2}dW_t + \frac{1}{2}dt) + \frac{\partial f(X_t,t)}{\partial t}(dt) +}$\\
+${\frac{1}{2}\Big\{\frac{\partial^2 f(X_t,t)}{\partial X_t^2}\Big[(\mu^2 S_t^{6} + \sigma^{4}dt 
++ 2(\mu S_t^{3})(\sigma^{2}dW_t) + 2(\mu S_t^{3})(\frac{1}{2}dt)\Big] +}$\\
+ ${\frac{\partial^2 f(X_t,t)}{\partial X_t t}(\mu S_t^{3}dt + \sigma^{2}dW_t dt + \frac{1}{2}dt^2)+}$
+${\frac{\partial^2 f(X_t,t)}{\partial t X_t}(\mu S_t^{3}dt + \sigma^{2}dW_t dt + \frac{1}{2}dt^2)\Big\}}$
+
+\end{center}
+
+\hfill
+
+We applied  It$\hat{o}$'s Lemma to the last two partial derivatives.
+
+
+\begin{center}
+${df_t =  \frac{\partial f(X_t,t)}{\partial X_t}(\mu S_t^{3} + \sigma^{2}dW_t + \frac{1}{2}dt) + \frac{\partial f(X_t,t)}{\partial t}(dt) +}$\\
+${\frac{1}{2}\Big\{\frac{\partial^2 f(X_t,t)}{\partial X_t^2}\Big[(\mu^2 S_t^{6} + \sigma^{4}dt 
++ 2(\mu S_t^{3})(\sigma^{2}dW_t) + 2(\mu S_t^{3})(\frac{1}{2}dt)\Big] +}$\\
+ ${\frac{\partial^2 f(X_t,t)}{\partial X_t t}(\mu S_t^{3}dt)+}$
+${\frac{\partial^2 f(X_t,t)}{\partial t X_t}(\mu S_t^{3}dt)\Big\}}$
+
+\end{center}
+
+\newpage
+
+
+
+Simplifying:
+
+\begin{center}
+${df_t =  \frac{\partial f(X_t,t)}{\partial X_t}(dX_t) + \frac{\partial f(X_t,t)}{\partial t}(dt) +}$\\
+${\frac{1}{2}\frac{\partial^2 f(X_t,t)}{\partial X_t^2}\Big(\mu^2 S_t^{6} + \sigma^{4}dt 
++ 2\mu S_t^{3}\sigma^{2}dW_t + \mu S_t^{3}dt\Big) +}$\\
+ ${\frac{1}{2}\mu S_t^{3}dt\Big(\frac{\partial^2 f(X_t,t)}{\partial X_t t}+}$
+${\frac{\partial^2 f(X_t,t)}{\partial t X_t}\Big)}$
+
+\end{center}
+
+\hfill
+
+\begin{center}
+${df_t =  \frac{\partial f(X_t,t)}{\partial X_t}(dX_t) + \frac{\partial f(X_t,t)}{\partial t}(dt) +}$\\
+${\frac{1}{2}\frac{\partial^2 f(X_t,t)}{\partial X_t^2}(\mu^2 S_t^{6}) + \frac{1}{2}\frac{\partial^2 f(X_t,t)}{\partial X_t^2}(\sigma^{4}dt) 
++ \frac{1}{2}\frac{\partial^2 f(X_t,t)}{\partial X_t^2}(2\mu S_t^{3}\sigma^{2}dW_t) + 
+\frac{1}{2}\frac{\partial^2 f(X_t,t)}{\partial X_t^2}(\mu S_t^{3}dt) +}$\\
+ ${\frac{1}{2}\mu S_t^{3}dt\Big(\frac{\partial^2 f(X_t,t)}{\partial X_t t}+}$
+${\frac{\partial^2 f(X_t,t)}{\partial t X_t}\Big)}$
+
+\end{center}
+
+
+Finally we got:
+
+\hfill
+
+\begin{center}
+${df_t =   \frac{\partial f(X_t,t)}{\partial X_t}dX_t+}$
+${\Big[\frac{\partial f(X_t,t)}{\partial t} + \frac{1}{2}\frac{\partial^2 f(X_t,t)}{\partial X_t^2}(\sigma^{4})+\frac{1}{2}\mu S_t^{3}\Big(\frac{\partial^2 f(X_t,t)}{\partial X_t t}+\frac{\partial^2 f(X_t,t)}{\partial t X_t}+\frac{\partial^2 f(X_t,t)}{\partial X_t^2}\Big)\Big]dt+}$\\
+${\frac{1}{2}\frac{\partial^2 f(X_t,t)}{\partial X_t^2}(\mu^2 S_t^{6}) + 
+\frac{\partial^2 f(X_t,t)}{\partial X_t^2}(\mu S_t^{3}\sigma^{2}dW_t)}$
+% ${\frac{1}{2}\mu S_t^{3}dt\Big(\frac{\partial^2 f(X_t,t)}{\partial X_t t}+}$
+% ${\frac{\partial^2 f(X_t,t)}{\partial t X_t}+\frac{\partial^2 f(X_t,t)}{\partial X_t^2}\Big)}$
+
+\end{center}
+
+% \newpage
+
+
+% \newpage
+% \bibliographystyle{plain}
+% \bibliography{biblist}
+
+\end{document}
